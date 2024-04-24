@@ -17,7 +17,6 @@ class App extends Component {
     sendMsg("Hello")
   }
 
-
   componentDidMount() {
     connect((msg) => {
       console.log("New Message")
