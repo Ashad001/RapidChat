@@ -1,0 +1,14 @@
+.ChatHistory {
+    background-color: #f4f4f4; /* Lighter background color for better readability */
+    margin: 0;
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners for a more modern look */
+    
+    h2 {
+        margin: 0;
+        padding: 10px;
+        font-size: 20px; /* Increased font size for better emphasis */
+        color: #333; /* Darkened text color for better contrast */
+        margin-bottom: 15px; /* Added spacing between heading and messages */
+    }
+}

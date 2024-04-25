@@ -4,7 +4,7 @@ import "./Header.scss";
 
 const Header = () => (
     <div className='header'>
-        <h3>RealTime Chat App in Golang</h3>
+        <h3>Rapid Chat</h3>
     </div>
 );
 
