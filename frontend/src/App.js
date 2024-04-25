@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import "./App.css";
 import { connect, sendMsg } from './api';
 import Header from './components/Header/Header';
-import ChatHistory from './components/Chat/ChatHistory/ChatHistory';
-import ChatInput from './components/Chat/ChatInput';
+import ChatHistory from './components/ChatHistory/ChatHistory';
 
 class App extends Component {
   constructor(props) {
@@ -13,15 +12,14 @@ class App extends Component {
     }
   }
 
-  send(event) {
-    if(event.key === 'Enter'){
-      sendMsg(event.target.value);
-      event.target.value = "";
-    }
+  send() {
+    console.log("Hello")
+    sendMsg("Hello")
   }
 
   componentDidMount() {
     connect((msg) => {
+      console.log("New Message")
       this.setState(prevState => ({
         chatHistory: [...this.state.chatHistory, msg]
       }))
@@ -35,7 +33,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <ChatHistory chatHistory={this.state.chatHistory} />
-        <ChatInput send={this.send} />
+        <button onClick={this.send}>Send</button>
       </div>
     );
   }
