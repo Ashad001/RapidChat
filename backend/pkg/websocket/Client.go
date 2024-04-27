@@ -1,21 +1,35 @@
 package websocket
+
 import (
+	"encoding/json"
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/gorilla/websocket"
 )
 
 
 type Client struct {
-	ID string
-	Conn *websocket.Conn
-	Pool *Pool
+	ID 			string
+	UserName 	string
+	Color 		string
+	Conn 		*websocket.Conn
+	Pool 		*Pool
 }
 
 type Message struct {
-    Type int    `json:"type"`
-    Body string `json:"body"`
+    Type 		int    	`json:"type"`
+    Body 		string 	`json:"body"`
+	UserName 	string 	`json:"userName"`
+	Color 		string	`json:"color"`
+	TimeStamp	string 	`json:"timeStamp"`
+
+}
+
+type MessageData struct {
+	Message string
+	ID 		string
 }
 
 func (c *Client) Read() {
@@ -30,8 +44,20 @@ func (c *Client) Read() {
 			log.Println(err)
 			return
 		}
-		message := Message{Type: messageType, Body: string(p)}
+		var messageData MessageData
+		json.Unmarshal([]byte(p), &messageData) 
+		if messageData.ID != c.ID {
+			log.Println("Unauthorized User")
+			return
+		}
+		message := Message {
+			Type: messageType,
+			Body: messageData.Message,
+			UserName: c.UserName,
+			Color: c.Color,
+			TimeStamp: time.Now().Format(time.RFC850) }
+
 		c.Pool.Broadcast <- message
-		fmt.Printf("Message Reveived: %+v\n", message)
+		fmt.Printf("Message Recieved %+v\n", message)
 	}
 }

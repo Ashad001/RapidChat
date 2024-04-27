@@ -4,13 +4,17 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/Ashad001/RapidChat/pkg/utils"
 	"github.com/Ashad001/RapidChat/pkg/websocket"
-	
 )
 
+type ChatServer struct {
+	messageList []websocket.MessageData
+}
 
 
-func serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
+
+func (c *ChatServer) serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.Host)
 	fmt.Println("WebSocket Endpoint Hit")
 
@@ -18,7 +22,23 @@ func serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Fprintf(w, "%+V\n", err)
 	}
+	keys := r.URL.Query()
+	userName := keys.Get("user")
+	if len(userName) < 1 {
+		fmt.Println("URl Parameter 'user' is missing")
+		return
+	}
+	userId := keys.Get("userId")
+	if len(userId) < 1 {
+		fmt.Println("Url Parameter 'userId' is missing")
+		return
+	}
+
+
 	client := &websocket.Client {
+		ID: userId,
+		UserName: userName,
+		Color: utils.GetRandomColor(),
 		Conn: conn,
 		Pool: pool,
 	}
@@ -27,17 +47,19 @@ func serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
 	client.Read()
 }
 
-func setupRoutes() {
-	pool := websocket.NewPool()
+func (c *ChatServer) setupRoutes() {
+	fmt.Println("Distributed Chat Server")
+	pool := websocket.NewPool(10, 20, 30)
 	go pool.Start()
 	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
-		serveWs(pool, w, r)
+		c.serveWs(pool, w, r)
 	})
 }
 
 func main() {
 	fmt.Println("Chat App")
-	setupRoutes()
+	chatServer := ChatServer{make([]websocket.MessageData, 0)}
+	chatServer.setupRoutes()
 	
 	http.ListenAndServe(":8080", nil)
 }
