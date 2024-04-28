@@ -15,30 +15,35 @@ type ChatServer struct {
 
 
 func (c *ChatServer) serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
-	fmt.Println(r.Host)
+	//fmt.Println(r.Host)
 	fmt.Println("WebSocket Endpoint Hit")
 
 	conn, err := websocket.Upgrade(w, r)
 	if err != nil {
-		fmt.Fprintf(w, "%+V\n", err)
+		fmt.Fprintf(w, "%+v\n", err)
 	}
+
 	keys := r.URL.Query()
+	
 	userName := keys.Get("user")
 	if len(userName) < 1 {
 		fmt.Println("URl Parameter 'user' is missing")
 		return
 	}
+	
 	userId := keys.Get("userId")
 	if len(userId) < 1 {
 		fmt.Println("Url Parameter 'userId' is missing")
 		return
 	}
 
+	color := utils.GetRandomColor()
+	fmt.Println(color)
 
-	client := &websocket.Client {
+	client := &websocket.Client{
 		ID: userId,
-		UserName: userName,
-		Color: utils.GetRandomColor(),
+		User: userName,
+		Color: color,
 		Conn: conn,
 		Pool: pool,
 	}
