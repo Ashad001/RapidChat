@@ -1,25 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import "./Header.scss";
 import auth from '../../authorization/auth';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-class Header extends Component {
-    handleLogout() {
+const Header = () => {
+    const history = useHistory();
+
+    const handleLogout = () => {
         auth.logout(() => {
-            this.props.history.push('/');
+            history.push('/');
         });
-    }
+    };
 
-    render() {
-        return (
-            <div className='header'>
-                <h3>Rapid Chat</h3>
-                <button className='logout-btn' onClick={() => {
-                    this.handleLogout()
-                }}>Logout</button>
-            </div>
-        );
-    }
-}
+    return (
+        <div className='header'>
+            <h3>Rapid Chat</h3>
+            <button className='logout-btn' onClick={handleLogout}>Logout</button>
+        </div>
+    );
+};
 
-export default withRouter(Header);
+export default Header;

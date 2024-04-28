@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import Header from './components/Header/Header';
 import ChatPage from './components/Chat/ChatPage';
 import LoginPage from './components/Login/LoginPage';
-import { ProtectedRoute } from './authorization/protected.route';
+import { SecureRoute } from './authorization/secure.route';
 
 class App extends Component {
 
@@ -15,8 +15,8 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/" component={LoginPage} />
-          <ProtectedRoute exact path="/chat" component={ChatPage} />
-          <Route path="*" component = {() => "404 NOT FOUND"} />
+          <SecureRoute exact path="/chat" component={ChatPage} />
+          <Route path="*" component = {() => "4o4 NOT FOUND (plis no masti)"} />
         </Switch>
       </div>
     );

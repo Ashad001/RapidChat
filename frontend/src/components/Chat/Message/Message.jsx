@@ -1,29 +1,27 @@
-import React, { Component } from "react";
+import React from "react";
 import "./Message.scss";
 
-class Message extends Component {
+const Message = ({ message }) => {
+  const parsedMessage = JSON.parse(message);
+  const formattedTimestamp = displayTime(parsedMessage.timeStamp);
 
-  constructor(props) {
-    super(props);
-    let temp = JSON.parse(this.props.message);
-    this.state = {
-      message: temp,
-      timeStamp: this.displayTime(temp.timeStamp)
-    };
-  }
+  return (
+    <div className="Message">
+      <span className="timeStamp">{formattedTimestamp}</span>
+      <span className="userName" style={{ color: parsedMessage.color }}>
+        {parsedMessage.user}&nbsp;
+      </span>
+      <span className="messageBody">{parsedMessage.body}</span>
+    </div>
+  );
+};
 
-  render() {
-    return <div className="Message">
-      <span className="timeStamp">{this.state.timeStamp}</span>
-      <span className="userName" style={{ color: this.state.message.color }}>{this.state.message.user}&nbsp;</span>
-      <span className="messageBody">{this.state.message.body}</span>
-    </div>;
-  }
+const displayTime = (timeStamp) => {
+  const localeTime = new Date(timeStamp).toLocaleTimeString();
+  return `${localeTime.substring(
+    0,
+    localeTime.length - 6
+  )}\u00A0${localeTime.substring(localeTime.length - 2, localeTime.length)}`;
+};
 
-  displayTime(timeStamp) {
-    var localeTime = new Date(timeStamp).toLocaleTimeString();
-    return `${localeTime.substring(0, localeTime.length - 6)}\u00A0${localeTime.substring(localeTime.length - 2, localeTime.length)}`;
-  }
-}
-
-export default Message
+export default Message;

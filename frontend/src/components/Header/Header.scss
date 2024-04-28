@@ -1,33 +1,28 @@
 .header {
-    background-color: #2F3136;
-    z-index: 999;
-    border-bottom: 1px solid #2B2D32;
-    width: 100%;
-    top: 0;
-    padding: 10px 0;
-    color: #B9BBBE;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  
-    h3 {
+  background-color: #2F3136;
+  border-bottom: 1px solid #2B2D32;
+  top: 0;
+  padding: 10px 20px; 
+  color: #B9BBBE;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
       margin: 0;
       padding: 0;
-      margin-left: 20px; 
-    }
-  
-    .logout-btn {
-      padding: 4px 10px;
+  }
+
+  .logout-btn {
+      padding: 6px 12px; 
       background-color: #36393F;
       color: #B9BBBE;
       border-radius: 4px;
       border: none;
       transition: background-color 0.2s;
-    }
-  
-    .logout-btn:hover {
-      background-color: #595E66;
       cursor: pointer;
-    }
+      &:hover {
+          background-color: #595E66;
+      }
   }
-  
+}

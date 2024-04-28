@@ -1,35 +1,11 @@
 package websocket
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
-	"encoding/json"
 	"time"
-	"github.com/gorilla/websocket"
 )
-
-
-type Client struct {
-	ID		string
-	User	string
-	Color	string
-	Conn	*websocket.Conn
-	Pool	*Pool
-}
-
-type Message struct {
-    Type 		int    	`json:"type"`
-    Body 		string 	`json:"body"`
-	User 		string 	`json:"user"`
-	Color 		string	`json:"color"`
-	TimeStamp	string 	`json:"timeStamp"`
-
-}
-
-type MessageData struct {
-	Message string
-	Id 		string
-}
 
 func (c *Client) Read() {
 	defer func() {
@@ -54,9 +30,9 @@ func (c *Client) Read() {
 			Body: messageData.Message,
 			User: c.User,
 			Color: c.Color,
-			TimeStamp: time.Now().Format(time.RFC822),
+			TimeStamp: time.Now().Format(time.RFC3339),
 		}
-
+		fmt.Println(time.Now().Format(time.RFC3339))
 		c.Pool.Broadcast <- message
 		fmt.Printf("Message Recieved %+v\n", message)
 	}

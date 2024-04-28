@@ -1,12 +1,18 @@
 .UserList {
-  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
   color: #6C6F77;
 }
 
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .user-list {
-  margin-right: 1080px;
+  margin-left: auto; 
   margin-top: 20px;
-  display: inline-block; 
   text-align: left;
 }
 
@@ -19,5 +25,6 @@
 .user {
   margin: 0px;
   margin-left: 5px;
+  animation: fadein 0.5s;
   font-size: 14px;
 }

@@ -2,12 +2,7 @@ class ChatSocket {
 	_socketEndpoint;
 	_socket;
 
-	// TODO allow user to pass option
-	// which will dissallow users from the same ip
-	constructor(socketEndpoint,
-		userName,
-		userId,
-		connect = false) {
+	constructor(socketEndpoint, userName, userId, connect = false) {
 		this._socketEndpoint = `${socketEndpoint}?user=${userName}&userId=${userId}`;
 		this._socket = connect ? new WebSocket(this._socketEndpoint) : null;
 	}
