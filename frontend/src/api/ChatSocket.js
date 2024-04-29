@@ -41,7 +41,7 @@ class ChatSocket {
 		};
 	};
 
-	sendMsg(msg, userId) {
+	sendMessage(msg, userId) {
 		console.log("sending msg: ", msg);
 
 		let messageData = {

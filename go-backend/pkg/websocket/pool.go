@@ -111,7 +111,7 @@ func (pool *Pool) Start() {
 				)
 				client.Conn.WriteJSON(
 					StateMessage{
-						Type: 1,
+						Type: 0,
 						ClientList: pool.GetUserNames(),
 					},
 				)

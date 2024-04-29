@@ -1,8 +1,8 @@
 package utils
 
 import (
-    "math/rand"
-    "time"
+	"math/rand"
+	"time"
 )
 
 const (
@@ -14,10 +14,9 @@ const (
     Green     = "#2ECC71"
     Yellow    = "#F1C40F"
     Purple    = "#9B59B6"
-    Gray      = "#514652"
 )
 
-var colors = []string{Turquoise, Orange, Red, Blue, Green, Yellow, Purple, Gray}
+var colors = []string{Turquoise, Orange, Red, Blue, Green, Yellow, Purple}
 var shuffledColors = make([]string, len(colors))
 var index = 0
 var rng *rand.Rand

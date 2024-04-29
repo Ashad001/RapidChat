@@ -7,11 +7,15 @@ const Message = ({ message }) => {
 
   return (
     <div className="Message">
-      <span className="timeStamp">{formattedTimestamp}</span>
-      <span className="userName" style={{ color: parsedMessage.color }}>
-        {parsedMessage.user}&nbsp;
-      </span>
-      <span className="messageBody">{parsedMessage.body}</span>
+      <div className="Details">
+        <span className="userName" style={{ color: parsedMessage.color }}>
+          {parsedMessage.user}&nbsp;
+        </span>
+        <span className="timeStamp">{formattedTimestamp}</span>
+      </div>
+      <div className="messageBody">
+        <span>{parsedMessage.body}</span>
+      </div>
     </div>
   );
 };

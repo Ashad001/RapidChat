@@ -16,7 +16,7 @@ const LoginPage = ({ history }) => {
   };
 
   const keyPressed = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && name !== "" && name !== undefined) {
       submitLogin();
     }
   };
@@ -35,12 +35,10 @@ const LoginPage = ({ history }) => {
             onKeyPress={keyPressed}
             placeholder=" "
           />
-          <label className="form__label">
-            Username
-          </label>
+          <label className="form__label">Username</label>
         </div>
 
-        <button className="login-button" onClick={submitLogin}>
+        <button className="login-button" onClick={keyPressed}>
           Login
         </button>
       </div>

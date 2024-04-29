@@ -89,7 +89,7 @@ class ChatPage extends Component {
 
   send(event) {
     if (event.keyCode === 13 && event.target.value !== "") {
-      this._chatSocket.sendMsg(event.target.value, auth.getUserId());
+      this._chatSocket.sendMessage(event.target.value, auth.getUserId());
       event.target.value = "";
     }
   }

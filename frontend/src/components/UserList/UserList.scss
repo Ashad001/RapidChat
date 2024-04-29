@@ -1,13 +1,18 @@
 .UserList {
   display: flex;
   flex-direction: column;
-  padding: 0 10px;
+  padding: 0 3rem;
   color: #6C6F77;
 }
 
 @keyframes fadein {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 .user-list {
@@ -26,5 +31,6 @@
   margin: 0px;
   margin-left: 5px;
   animation: fadein 0.5s;
+  animation: fadeout 0.5s;
   font-size: 14px;
 }

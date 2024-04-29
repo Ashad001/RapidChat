@@ -1,6 +1,7 @@
 .ChatHistory {
     margin: 0;
-    padding: 20px;
+    padding: 30px;
+
 
     h2 {
         margin: 0;
@@ -14,14 +15,16 @@
         max-height: calc(100vh - 103px);
         bottom: 50px;
         scroll-behavior: smooth;
+        mask-image: linear-gradient(to bottom, transparent, black);
     }
 
     #history {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction:column;
+        align-items: center;
         margin: 0;
-        padding: 0;
+        width: 90%;
+        padding: 20px 20px 20px 20px;
     }
 
     .disable-scrollbars::-webkit-scrollbar {
