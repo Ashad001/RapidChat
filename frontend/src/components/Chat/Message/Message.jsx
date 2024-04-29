@@ -1,5 +1,6 @@
 import React from "react";
 import "./Message.scss";
+//import SelectEmoji from "../Emoji";
 
 const Message = ({ message }) => {
   const parsedMessage = JSON.parse(message);

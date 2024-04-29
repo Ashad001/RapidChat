@@ -36,7 +36,22 @@
 
   .messageBody {
     font-size: 16px;
-    word-wrap: break-word; /* Enable text wrapping */
+    word-wrap: break-word;
     color: #d7d5d9;
+  }
+
+  .emojiList {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .emojiList > * {
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+
+  .emoji {
+    font-size: 20px;
   }
 }
