@@ -13,23 +13,10 @@ class ChatPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isActive: false,
       chatHistory: [],
       userList: [],
     };
   }
-
-  handleShow = () => {
-    this.setState({
-      isActive: true,
-    });
-  };
-
-  handleHide = () => {
-    this.setState({
-      isActive: false,
-    });
-  };
 
   componentDidMount() {
     if (auth.isAuthenticated()) {
@@ -37,6 +24,7 @@ class ChatPage extends Component {
         "ws://localhost:8080/ws",
         auth.getUserName(),
         auth.getUserId(),
+        auth.getRoomName(),
         true
       );
       this._chatSocket.connect((event) => {
@@ -52,13 +40,14 @@ class ChatPage extends Component {
   handleSocketEvent(event) {
     switch (event.type) {
       case "close":
-        // TODO notify user about logout due to websocket closed
+        // Handle WebSocket close event (e.g., notify user about logout)
         this.handleLogout();
         break;
       case "message":
         this.handleMessage(event);
         break;
       default:
+        console.log("Unknown WebSocket event type");
     }
   }
 
@@ -89,6 +78,7 @@ class ChatPage extends Component {
 
   send(event) {
     if (event.keyCode === 13 && event.target.value !== "") {
+      console.log("Sending message >> ", event.target.value);
       this._chatSocket.sendMessage(event.target.value, auth.getUserId());
       event.target.value = "";
     }
@@ -99,10 +89,9 @@ class ChatPage extends Component {
       return <Redirect to="/" />;
     }
 
-    console.log("this.state.userList :>> ", this.state.userList);
     return (
       <div className="ChatPage">
-        <UserList userList={this.state.userList}></UserList>
+        <UserList userList={this.state.userList} />
         <ChatHistory chatHistory={this.state.chatHistory} />
         <ChatInput send={(e) => this.send(e)} />
       </div>

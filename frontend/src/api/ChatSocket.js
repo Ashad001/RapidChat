@@ -2,8 +2,8 @@ class ChatSocket {
 	_socketEndpoint;
 	_socket;
 
-	constructor(socketEndpoint, userName, userId, connect = false) {
-		this._socketEndpoint = `${socketEndpoint}?user=${userName}&userId=${userId}`;
+	constructor(socketEndpoint, userName, userId, roomName, connect = false) {
+		this._socketEndpoint = `${socketEndpoint}?roomName=${roomName}&user=${userName}&userId=${userId}`;
 		this._socket = connect ? new WebSocket(this._socketEndpoint) : null;
 	}
 
@@ -42,12 +42,11 @@ class ChatSocket {
 	};
 
 	sendMessage(msg, userId) {
-		console.log("sending msg: ", msg);
-
 		let messageData = {
 			"message": msg,
 			"id": userId
 		}
+		console.log("sending msg: ", messageData);
 		this._socket.send(JSON.stringify(messageData));
 	};
 }

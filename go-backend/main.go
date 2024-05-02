@@ -12,8 +12,6 @@ type ChatServer struct {
 	messageList []websocket.MessageData
 }
 
-
-
 func (c *ChatServer) serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(r.Host)
 	fmt.Println("WebSocket Endpoint Hit")
@@ -24,13 +22,13 @@ func (c *ChatServer) serveWs(pool *websocket.Pool, w http.ResponseWriter, r *htt
 	}
 
 	keys := r.URL.Query()
-	
+
 	userName := keys.Get("user")
 	if len(userName) < 1 {
 		fmt.Println("URl Parameter 'user' is missing")
 		return
 	}
-	
+
 	userId := keys.Get("userId")
 	if len(userId) < 1 {
 		fmt.Println("Url Parameter 'userId' is missing")
@@ -40,12 +38,19 @@ func (c *ChatServer) serveWs(pool *websocket.Pool, w http.ResponseWriter, r *htt
 	color := utils.GetRandomColor()
 	fmt.Println(color)
 
+	room := keys.Get("roomName")
+	if len(room) < 1 {
+		fmt.Println("URL Parameter 'room name' is missing")
+		return
+	}
+
 	client := &websocket.Client{
-		ID: userId,
-		User: userName,
+		ID:    userId,
+		User:  userName,
 		Color: color,
-		Conn: conn,
-		Pool: pool,
+		Room:  room,
+		Conn:  conn,
+		Pool:  pool,
 	}
 
 	pool.Register <- client
@@ -65,7 +70,6 @@ func main() {
 	fmt.Println("Chat App")
 	chatServer := ChatServer{make([]websocket.MessageData, 0)}
 	chatServer.setupRoutes()
-	
+
 	http.ListenAndServe(":8080", nil)
 }
-

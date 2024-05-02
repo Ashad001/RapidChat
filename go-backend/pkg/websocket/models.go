@@ -6,6 +6,7 @@ import (
 
 type Client struct {
 	ID		string
+	Room 	string
 	User	string
 	Color	string
 	Conn	*websocket.Conn
@@ -22,8 +23,8 @@ type Message struct {
     Body 		string 	`json:"body"`
 	User 		string 	`json:"user"`
 	Color 		string	`json:"color"`
+	Room 		string 	`json:"room"`
 	TimeStamp	string 	`json:"timeStamp"`
-
 }
 
 type MessageData struct {

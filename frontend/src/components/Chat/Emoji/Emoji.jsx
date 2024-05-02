@@ -10,14 +10,17 @@ function SelectEmoji() {
 
   return (
     <div>
-      <h1>Selected Emoji: {selectedEmoji}</h1>
       <EmojiPicker
       onEmojiSelect={handleEmojiSelect}
-      rows={4}
-      perRow={8}
-      emojiSize={32}
-      pickerStyle={{ position: 'absolute', bottom: '20px', right: '20px' }}
-    />
+      emojiSize={4}
+      height={300}
+      width={250}
+      theme='dark'
+      emojiStyle='facebook'
+      reactionsDefaultOpen={true}
+      allowExpandReactions={false}
+      />
+      <h1>Selected Emoji: {selectedEmoji}</h1>
     </div>
   );
 }

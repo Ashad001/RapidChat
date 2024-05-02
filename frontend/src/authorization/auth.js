@@ -1,44 +1,43 @@
 class Auth {
-
 	constructor() {
 		this.sessionStorageUser = 'scortiousprime';
+		this.sessionStorageRoom = 'rapidchatRoom';
 	}
 
-	login(name, cb) {
-		var userId = this.createGuid()
+	login(name, roomName, cb) {
+		var userId = this.createGuid();
 		sessionStorage.setItem(this.sessionStorageUser, JSON.stringify({
 			_name: name,
 			_userId: userId
+		}));
+		sessionStorage.setItem(this.sessionStorageRoom, JSON.stringify({
+			_roomName: roomName
 		}));
 		cb();
 	}
 
 	logout(cb) {
-		sessionStorage.removeItem(
-			this.sessionStorageUser
-		)
+		sessionStorage.removeItem(this.sessionStorageUser);
+		sessionStorage.removeItem(this.sessionStorageRoom);
 		cb();
 	}
 
 	isAuthenticated() {
-		var test = sessionStorage.getItem(
-			this.sessionStorageUser
-		);
-		return test;
+		var user = sessionStorage.getItem(this.sessionStorageUser);
+		var room = sessionStorage.getItem(this.sessionStorageRoom);
+		return user && room; // Check both user and room existence
 	}
 
 	getUserName() {
-		return JSON.parse(
-			sessionStorage.getItem(
-				this.sessionStorageUser
-			))._name;
+		return JSON.parse(sessionStorage.getItem(this.sessionStorageUser))._name;
 	}
 
 	getUserId() {
-		return JSON.parse(
-			sessionStorage.getItem(
-				this.sessionStorageUser
-			))._userId;
+		return JSON.parse(sessionStorage.getItem(this.sessionStorageUser))._userId;
+	}
+
+	getRoomName() {
+		return JSON.parse(sessionStorage.getItem(this.sessionStorageRoom))._roomName;
 	}
 
 	createGuid() {

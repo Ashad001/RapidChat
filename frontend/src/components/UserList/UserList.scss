@@ -30,7 +30,10 @@
 .user {
   margin: 0px;
   margin-left: 5px;
-  animation: fadein 0.5s;
-  animation: fadeout 0.5s;
   font-size: 14px;
 }
+
+.user.leave {
+  animation: fadeout 0.5s forwards; 
+}
+
