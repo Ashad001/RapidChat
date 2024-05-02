@@ -1,0 +1,21 @@
+.RoomHeader {
+  padding: 20px;
+  background-color: transparent; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.roomName {
+  margin: 0;
+  font-weight: bold;
+  color: #99aabb; 
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+  transition: color 0.3s; 
+}
+
+.RoomHeader:hover .roomName {
+  color: #c3c9cf; 
+}

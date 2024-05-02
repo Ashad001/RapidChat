@@ -25,7 +25,7 @@ class Auth {
 	isAuthenticated() {
 		var user = sessionStorage.getItem(this.sessionStorageUser);
 		var room = sessionStorage.getItem(this.sessionStorageRoom);
-		return user && room; // Check both user and room existence
+		return user && room; 
 	}
 
 	getUserName() {

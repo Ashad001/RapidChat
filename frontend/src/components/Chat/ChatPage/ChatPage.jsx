@@ -5,6 +5,7 @@ import "./ChatPage.scss";
 import ChatHistory from "../ChatHistory/ChatHistory";
 import ChatInput from "../ChatInput";
 import UserList from "../../UserList";
+import Room from "../../Room";
 import auth from "../../../authorization/auth";
 
 class ChatPage extends Component {
@@ -15,6 +16,7 @@ class ChatPage extends Component {
     this.state = {
       chatHistory: [],
       userList: [],
+      roomColor: "",
     };
   }
 
@@ -91,6 +93,7 @@ class ChatPage extends Component {
 
     return (
       <div className="ChatPage">
+        <Room roomName={auth.getRoomName()} />
         <UserList userList={this.state.userList} />
         <ChatHistory chatHistory={this.state.chatHistory} />
         <ChatInput send={(e) => this.send(e)} />
