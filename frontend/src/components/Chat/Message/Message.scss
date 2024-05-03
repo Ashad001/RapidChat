@@ -36,8 +36,11 @@
 
   .messageBody {
     font-size: 16px;
-    word-wrap: break-word;
+    text-wrap: wrap;
     color: #d7d5d9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .emojiList {

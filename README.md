@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# RapidChat
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+RapidChat is a real-time chat application. It allows users to join chat rooms, send messages, and interact with other users in real-time. The application is built using React for the frontend and Go for the backend.
 
-## Available Scripts
+## Networking Implementation
 
-In the project directory, you can run:
+RapidChat leverages WebSocket technology for real-time communication between the client and server. WebSocket is a communication protocol that provides **full-duplex** communication channels over a single TCP connection. It enables interactive communication between a client and a server, allowing messages to be sent and received in real-time.
 
-### `npm start`
+### Frontend
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The frontend of RapidChat is built using React. The frontend communicates with the backend server using WebSocket to send and receive messages. The `ChatSocket.js` file handles WebSocket communication with the server, allowing users to join chat rooms, send messages, and receive updates in real-time.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend
 
-### `npm test`
+The backend of RapidChat is built using Go, a statically typed, compiled programming language. The backend server implements WebSocket functionality using the `github.com/gorilla/websocket` package. It manages WebSocket connections, maintains chat rooms, and facilitates communication between clients.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **WebSocket Server**: The backend server establishes a WebSocket server using the `github.com/gorilla/websocket` package. It listens for incoming WebSocket connections from clients and manages these connections using a connection pool.
 
-### `npm run build`
+- **Connection Pool**: The backend maintains a connection pool to manage WebSocket connections from multiple clients. When a client connects to the server, its WebSocket connection is added to the connection pool. The server broadcasts messages to all clients in the pool, allowing real-time communication between users.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Message Handling**: The backend server handles incoming messages from clients and broadcasts them to other clients in the same chat room. It also sends notifications to clients when users join or leave the chat room.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To run the RapidChat application locally, follow these steps:
 
-### `npm run eject`
+1. Clone the repository.
+2. Navigate to the `frontend` directory and run `npm install` to install dependencies.
+3. Run `npm start` to start the frontend server.
+4. Navigate to the `go-backend` directory and run `go run main.go` to start the backend server.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Technologies Used
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Frontend**: React, JavaScript, WebSocket
+- **Backend**: Go, WebSocket
+- **Package Manager**: npm (for frontend), Go modules (for backend)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Example
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Acknowledgements
 
-## Learn More
+- [Tutorial: Building a Real-Time Chat App with React and Go](https://tutorialedge.net/projects/chat-system-in-go-and-react/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [ereid7: go-react-Chat](<https://github.com/ereid7/go-react-chat>)
