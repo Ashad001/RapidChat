@@ -33,12 +33,13 @@ To run the RapidChat application locally, follow these steps:
 
 - **Frontend**: React, JavaScript, WebSocket
 - **Backend**: Go, WebSocket
-- **Package Manager**: npm (for frontend), Go modules (for backend)
+- **Package Manager**: npm/yarn (for frontend), Go modules (for backend)
 
 ## Example
+
+![Example](./reports/example.gif)
 
 ## Acknowledgements
 
 - [Tutorial: Building a Real-Time Chat App with React and Go](https://tutorialedge.net/projects/chat-system-in-go-and-react/)
-
 - [ereid7: go-react-Chat](<https://github.com/ereid7/go-react-chat>)
