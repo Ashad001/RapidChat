@@ -33,8 +33,6 @@ func (c *Client) Read() {
 			Room:      c.Room,
 			TimeStamp: time.Now().Format(time.RFC3339),
 		}
-		fmt.Println(time.Now().Format(time.RFC3339))
 		c.Pool.Broadcast <- message
-		fmt.Printf("Message Recieved %+v\n", message)
 	}
 }

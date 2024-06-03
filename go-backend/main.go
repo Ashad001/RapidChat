@@ -13,7 +13,6 @@ type ChatServer struct {
 }
 
 func (c *ChatServer) serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
-	//fmt.Println(r.Host)
 	fmt.Println("WebSocket Endpoint Hit")
 
 	conn, err := websocket.Upgrade(w, r)
@@ -36,7 +35,6 @@ func (c *ChatServer) serveWs(pool *websocket.Pool, w http.ResponseWriter, r *htt
 	}
 
 	color := utils.GetRandomColor()
-	fmt.Println(color)
 
 	room := keys.Get("roomName")
 	if len(room) < 1 {
@@ -58,7 +56,6 @@ func (c *ChatServer) serveWs(pool *websocket.Pool, w http.ResponseWriter, r *htt
 }
 
 func (c *ChatServer) setupRoutes() {
-	fmt.Println("Distributed Chat Server")
 	pool := websocket.NewPool(10, 20, 30)
 	go pool.Start()
 	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
